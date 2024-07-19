@@ -13,8 +13,8 @@ function App() {
         <Route path="/" element={<Login />}></Route>
         <Route path="/register" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/create_room" element={<ShowBarcode />}></Route>
-        <Route path="/show_barcode" element={<ShowBarcode />}></Route>
+        <Route path="/createroom" element={<CreateRoom />}></Route>
+        <Route path="/show_barcode/:id" element={<ShowBarcode />}></Route>
       </Routes>
     </BrowserRouter>
   )
