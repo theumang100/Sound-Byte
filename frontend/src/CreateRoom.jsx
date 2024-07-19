@@ -1,14 +1,6 @@
-// function Home() {
-//     return (
-//         <h2>Home page</h2>
-//     );
-// }
-
-// export default Home;
-
 import React from 'react'
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 
 
@@ -22,7 +14,8 @@ function CreateRoom() {
         axios.post('http://localhost:3001/createroom', { roomName })
             // .then(res => console.log(res))
             .then(res => {
-                navigate('/create_room')
+                const { roomId } = res.data;
+                navigate(`/show_barcode/${roomId}`);
             })
             .catch(err => console.log(err))
     }
