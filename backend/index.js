@@ -28,7 +28,7 @@ app.post('/createroom', (req, res) => {
         return crypto.randomBytes(5).toString('hex')
     }
     const randomNumber = generateRandomNumber()
-    const {roomName} = req.body;
+    const { roomName } = req.body;
     console.log(roomName, randomNumber)
 
     const newRoom = new RoomModel({
@@ -36,6 +36,13 @@ app.post('/createroom', (req, res) => {
         name: roomName
     });
     newRoom.save()
+        .then(() => {
+            res.status(201).json({ message: 'Room created successfully', roomId: randomNumber });
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({ error: 'Failed to create room' });
+        });
 })
 
 
