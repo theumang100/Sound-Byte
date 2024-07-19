@@ -1,29 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
 const ShowBarcode = () => {
-  const [uniqueId, setUniqueId] = useState('');
-  const [qrCodeUrl, setQrCodeUrl] = useState('');
-
-  useEffect(() => {
-    if (uniqueId) {
-      setQrCodeUrl(`http://localhost:3001/show_barcode/${uniqueId}`);
-    }
-  }, [uniqueId]);
-
-  const handleInputChange = (event) => {
-    setUniqueId(event.target.value);
-  };
+  const { id } = useParams();
+  const qrCodeUrl = `http://localhost:3001/show_barcode/${id}`;
 
   return (
-    <div>
-      <h1>QR Code Display</h1>
-      <input 
-        type="text" 
-        value={uniqueId} 
-        onChange={handleInputChange} 
-        placeholder="Enter Unique ID" 
-      />
-      {uniqueId && <img src={qrCodeUrl} alt={`QR Code for ${uniqueId}`} />}
+    <div className="d-flex justify-content-center align-items-center vh-100">
+      <div className="text-center">
+        <h1>Scan to join the room </h1>
+        <img src={qrCodeUrl} alt="QR Code" className="img-fluid" />
+      </div>
     </div>
   );
 };
